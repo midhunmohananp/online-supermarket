@@ -19,7 +19,7 @@
     {
       function title()
       {
-        $title = 'British Suits';
+        $title = 'Aucupa POS';
         return $title;
       }
     }

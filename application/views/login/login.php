@@ -1,6 +1,6 @@
     <div class="login-box">
       <div class="login-logo">
-        <a href="<?php echo base_url();?>"><b>British</b>Suits</a>
+        <a href="<?php echo base_url();?>"><b>Acupa</b>POS</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <?php echo form_open('login-check',['id'=>'formLogin','name'=>'formLogin']);?>

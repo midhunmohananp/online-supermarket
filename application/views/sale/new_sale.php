@@ -30,7 +30,7 @@
                       </div>
                       <div class="form-group col-md-3 sale-form-group-padding">
                         <label class="control-label">Date</label>
-                        <input type="text" id="txtAccessName" name="txtAccessName" class="form-control" placeholder="placeholder"/>
+                        <input type="text" id="txtAccessName" name="txtAccessName" class="form-control" placeholder="placeholder" disabled="" />
                       </div>
                       <div class="form-group col-md-3 sale-form-group-padding">
                         <label class="control-label">C/o</label>

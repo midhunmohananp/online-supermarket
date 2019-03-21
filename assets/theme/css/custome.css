@@ -2,6 +2,10 @@
 	/*width:150px !important;*/
 
 }
+.form-control {
+	border-radius:10px !important;
+	border-color: #696a6d !important;
+}
 .sale-no-padding {
 	padding-left: 0px;
 	/*padding-right: 0px;*/

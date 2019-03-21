@@ -12,7 +12,7 @@
   <hr>
   <div class="row">
     <!-- left column -->
-            <div class="col-md-8 ">
+            <div class="col-md-9 sale-invoice-details">
               <div class="box box-primary">
                 <div class="box-header">
                   <h3 class="box-title">Invoice Details</h3>
@@ -105,7 +105,7 @@
                 </form>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3 sale-payment-details">
               <div class="box box-primary">
                 <div class="box-header">
                   <h3 class="box-title">Payment Details</h3>
@@ -116,7 +116,7 @@
                 <!-- form start -->
                 <div>
                   <div class="box-body">    
-                    <table class="table table-hover">
+                    <table class="table table-hover tbl-payment-details">
                       <tbody>
                         <tr>
                           <td>Sub Total</td>
@@ -132,6 +132,84 @@
                           <td>Discount</td>
                           <td>:</td>
                           <td>0.00</td>
+                        </tr>
+                        <tr>
+                          <td>Grand Total</td>
+                          <td>:</td>
+                          <td>0.00</td>
+                        </tr>
+                      </tbody>
+                    </table> 
+                  </div><!-- /.box-body -->                  
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 sale-payment-details">
+              <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">Invoice Items</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <div>
+                  <div class="box-body ">    
+                    <table class="table table-hover table-striped table-bordered">
+                      <tbody>
+                        <thead>
+                            <th class="text-center" >Item Name</th>
+                            <th class="text-center" >Price(inc.Tax)</th>
+                            <th class="text-center" >Discount(%)</th>
+                            <th class="text-center" >Discount Price</th>
+                            <th class="text-center" >Qty</th>
+                            <th class="text-center" >Line Total</th>
+                            <th class="text-center" >&nbsp;</th>
+                        </thead>
+                        <tr>
+                            <td class="text-center" >Item Name</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >0%</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >0</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >
+                              <button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center" >Item Name</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >0%</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >0</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >
+                              <button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center" >Item Name</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >0%</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >0</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >
+                              <button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center" >Item Name</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >0%</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >0</td>
+                            <td class="text-center" >0.00</td>
+                            <td class="text-center" >
+                              <button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>
+                            </td>
                         </tr>
                       </tbody>
                     </table>                

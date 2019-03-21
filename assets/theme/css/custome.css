@@ -9,6 +9,17 @@
 .sale-form-group-padding {
 	padding: 5px;margin: 0;
 }
+.sale-invoice-details {
+	padding-right: 0px !important;
+	padding-left: 6px !important;
+}
+.sale-payment-details {
+	padding-right: 0px !important;
+	padding-left: 6px !important;
+}
+.tbl-payment-details > tbody > tr:nth-child(4) > td {
+ 	font-weight: bold;  
+ }
 hr {
 	border-top: 1px solid #a2c6e4;
 }

@@ -49,8 +49,15 @@ class Login extends CI_Controller {
 
 				$this->session->set_userdata('bsw_log', $login_data);
 				redirect('dashboard');
+			} else {
+				$msg = 'Username and password not accepted';
+				$this->session->set_flashdata('error',$msg);
+				redirect('login');
 			}
-
+		} else {
+			$msg = 'Username and password not accepted';
+			$this->session->set_flashdata('error',$msg);
+			redirect('login');
 		}
 	}
 	public function logout() {

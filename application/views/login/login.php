@@ -4,6 +4,13 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <?php echo form_open('login-check',['id'=>'formLogin','name'=>'formLogin']);?>
+          <?php if($this->session->has_userdata('error') == TRUE) :?>
+            <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <!-- <h4>  <i class="icon fa fa-check"></i> Alert!</h4> -->
+                        <?php echo $this->session->flashdata('error');?>
+                      </div>
+            <?php endif;?>
           <div class="form-group has-feedback">
             <input type="text" class="form-control" name="txtUserName" id="txtUserName" placeholder="Email"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>

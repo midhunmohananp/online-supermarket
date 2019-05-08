@@ -70,10 +70,15 @@ class Ajax extends CI_Controller {
 		}
 		echo json_encode($json);
 	}
-	public function check_tax_name_excist() {
+	public function check_tax_name_excist($tax_ID = NULL) {
 
 		$tax_name = $this->input->post('txtTaxName',TRUE);
-		$tax = $this->common->get_data_where_row('tax',['tax_name'=>$tax_name]);
+		$condition = [];
+		$condition['tax_name']=$tax_name;
+		if($tax_ID == TRUE) {
+		$condition['tax_ID !=']=$tax_ID;
+		}
+		$tax = $this->common->get_data_where_row('tax',$condition);
 		if($tax == TRUE) {					
 			$json =  "Tax name Already Excist";
 		} else {
@@ -91,7 +96,7 @@ class Ajax extends CI_Controller {
 		}
 		$brand = $this->common->get_data_where_row('brand',$condition);
 		if($brand == TRUE) {					
-			$json =  "brand name Already Excist";
+			$json =  "Brand name already excist";
 		} else {
 						$json = true;
 		}

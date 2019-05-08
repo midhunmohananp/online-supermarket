@@ -33,6 +33,7 @@ $route['brand-listing'] = 'Brand/listing';
 $route['tax-add'] = 'Tax/add';
 $route['tax-insert'] = 'Tax/insert';
 $route['tax-edit/(:any)'] = 'Tax/edit/$1';
+$route['tax-update/(:any)'] = 'Tax/update/$1';
 $route['tax-delete/(:any)'] = 'Tax/delete/$1';
 $route['tax-listing'] = 'Tax/listing';
 //Unit

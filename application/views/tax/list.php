@@ -10,6 +10,8 @@
                     <thead>
                       <tr>
                         <th>Tax Name</th>
+                        <th>Tax Rate (%)</th>
+                        <th>Tax Name</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -19,6 +21,8 @@
                     
                       echo '<tr>
                         <td>'.$tax->tax_name.'</td>
+                        <td>'.$tax->tax_rate.'</td>
+                        <td><a href="'.site_url(['tax-edit',$tax->tax_ID]).'"><button class="btn btn-sm btn-primary">Edit</button></a> <button class="btn btn-sm btn-danger">Delete</button></td>
                       </tr>';
 
                       }

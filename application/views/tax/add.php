@@ -16,7 +16,7 @@
                       <input type="text" id="txtTaxName" name="txtTaxName" class="form-control" placeholder="Enter ..."/>
                     </div>
                     <div class="form-group">
-                      <label>Tax Rate</label>
+                      <label>Tax Rate (%)</label>
                       <input type="text" id="txtTaxRate" name="txtTaxRate" class="form-control" placeholder="Enter ..."/>
                     </div>
 

@@ -67,12 +67,12 @@ class Brand extends My_Controller {
 	public function update($brand_ID) {
 		$msg = '';
 		$brand_name = $this->input->post('txtBrandName',TRUE);
-		$insert = [
+		$update_data = [
 		'brand_name'=>$brand_name,
 		'brand_slug'=>createslug($brand_name),
 		];
 		$condition = ['brand_ID'=>$brand_ID];
-		$update = $this->common->update_data('brand',$condition);
+		$update = $this->common->update_data('brand',$update_data,$condition);
 		if($update == TRUE) {
 			$msg = 'Brand has been successfully updated.';
 			$this->session->set_flashdata('success',$msg);

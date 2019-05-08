@@ -80,19 +80,6 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo site_url(['brand-add']);?>"><i class="fa fa-circle-o"></i>Add</a></li>
-                <li class="treeview">
-              <a href="#">
-                <i class="fa fa-share"></i> <span>Category</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo site_url(['category-add']);?>"><i class="fa fa-circle-o"></i>Add</a></li>
-                <li>
-                </li>
-                <li><a href="<?php echo site_url(['category-listing']);?>"><i class="fa fa-circle-o"></i>List</a></li>
-              </ul>
-            </li><li>
-                </li>
                 <li><a href="<?php echo site_url(['brand-listing']);?>"><i class="fa fa-circle-o"></i>List</a></li>
               </ul>
             </li>

@@ -21,88 +21,76 @@
                   </div>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                
                   <div class="box-body">
                     <div class="col-md-12 sale-no-padding">
                       <div class="form-group col-md-3 sale-form-group-padding">
                         <label class="control-label">Invoice No</label>
-                        <input type="text" id="txtAccessName" name="txtAccessName" class="form-control" placeholder="placeholder"/>
+                        <input type="text" id="txtInvoiceNumber" name="txtInvoiceNumber" class="form-control" placeholder="invoice number" value="<?php echo $invoice_number;?>" disabled />
                       </div>
                       <div class="form-group col-md-3 sale-form-group-padding">
                         <label class="control-label">Date</label>
-                        <input type="text" id="txtAccessName" name="txtAccessName" class="form-control" placeholder="placeholder" disabled="" />
+                        <input type="text" id="txtInvoiceDate" name="txtInvoiceDate" class="form-control" placeholder="date" value="<?php echo $invoice_date;?>" disabled />
                       </div>
                       <div class="form-group col-md-3 sale-form-group-padding">
                         <label class="control-label">C/o</label>
-                        <input type="text" id="txtAccessName" name="txtAccessName" class="form-control" placeholder="C/o"/>
+                        <input type="text" id="txtUserName" name="txtUserName" class="form-control" placeholder="C/o" value="<?php echo $user_name;?>" disabled/>
                       </div>                     
                     </div>
                     <div class="col-md-12 sale-no-padding">
-                      <div class="form-group col-md-3 sale-form-group-padding">
-                        <input type="text" id="txtAccessName" name="txtAccessName" class="form-control" placeholder="Customer Name"/>
+                      <div class="form-group col-md-4 sale-form-group-padding">
+                        <input type="text" class="form-control" id="customers_name" name="customers_name" data-validate="required" data-message-required="This is required field." autocomplete="off" placeholder="Customer Name"  onKeypress="loadCustomer()"/>
+                        <input type="hidden" name="txtCustomerID" id="txtCustomerID">
                       </div>
-                      <div class="form-group col-md-3 sale-form-group-padding">
-                        <input type="text" id="txtAccessName" name="txtAccessName" class="form-control" placeholder="Mobile Number"/>
+                      <div class="form-group col-md-4 sale-form-group-padding">
+                        <input type="text" id="txtCustomerMobile" name="txtCustomerMobile" class="form-control" placeholder="Mobile Number"/>
                       </div>
-                      <div class="form-group col-md-3 sale-form-group-padding">
-                        <input type="text" id="txtAccessName" name="txtAccessName" class="form-control" placeholder="Email"/>
+                      <div class="form-group col-md-4 sale-form-group-padding">
+                        <input type="text" id="txtCustomerEmail" name="txtCustomerEmail" class="form-control" placeholder="Email"/>
                       </div>
-                      <div class="form-group col-md-3 sale-form-group-padding">
-                        <input type="text" id="txtAccessName" name="txtAccessName" class="form-control" placeholder="Balance"/>
-                      </div>                    
                     </div>
                     <div class="col-md-12 sale-no-padding">
                       <hr>
+                      <form role="form" id="saleItemAdd" name="saleItemAdd">
                       <div class="form-group col-md-3 sale-form-group-padding">
                         <label class="control-label">Product Name</label>
-                        
-                        <input type="hidden" name="invoice_item_id" id="invoice_item_id" value=""> 
-
-                        <input type="text" class="form-control" id="invoice_item_name" name="invoice_item_name" autocomplete="off" placeholder="Product Name" onKeypress="" />
+                        <input type="type" id="txtProductID" name="txtProductID" hidden=""> 
+                        <input type="type" id="txtStoreID" name="txtStoreID" hidden=""> 
+                        <input type="text" class="form-control" id="product_name" name="product_name" autocomplete="off" placeholder="Product Name" onKeypress="loadProducts()" />
                       </div>
                       <div class="form-group col-md-2 sale-form-group-padding">
                         <label class="control-label">Price</label>
-                        
-                        <input type="hidden" name="invoice_item_id" id="invoice_item_id" value=""> 
-
-                        <input type="text" class="form-control" id="invoice_item_name" name="invoice_item_name" autocomplete="off" placeholder="Product Name" onKeypress="" />
+                        <input type="text" class="form-control" id="txtProuductUnitPrice" name="txtProuductUnitPrice" autocomplete="off" placeholder="Price" hidden="" hidden="" />
                       </div>
                       <div class="form-group col-md-2 sale-form-group-padding">
-                        <label class="control-label">Discount(%)</label>
-                        
-                        <input type="hidden" name="invoice_item_id" id="invoice_item_id" value=""> 
-
-                        <input type="text" class="form-control" id="invoice_item_name" name="invoice_item_name" autocomplete="off" placeholder="Product Name"  />
+                        <label class="control-label">Tax(%)</label>                        
+                        <input type="text" class="form-control" id="txtProductTax" name="txtProductTax" autocomplete="off" placeholder="Tax"  hidden="" />
                       </div>
                       <div class="form-group col-md-1 sale-form-group-padding">
-                        <label class="control-label">Quantity</label>
-                        
-                        <input type="hidden" name="invoice_item_id" id="invoice_item_id" value=""> 
-
-                        <input type="text" class="form-control" id="invoice_item_name" name="invoice_item_name" autocomplete="off" placeholder="Product Name"  />
+                        <label class="control-label">Quantity</label>                        
+                        <input type="text" class="form-control" id="txtProductQty" name="txtProductQty" autocomplete="off" placeholder="Qty"  />
+                      </div>                      
+                      <div class="form-group col-md-2 sale-form-group-padding">
+                        <label class="control-label">Discount(%)</label>                        
+                        <input type="text" class="form-control" id="txtProductDiscount" name="txtProductDiscount" autocomplete="off" placeholder="Discount"  value="0" />
                       </div>
                       <div class="form-group col-md-2 sale-form-group-padding">
-                        <label class="control-label">Line Total</label>
-                        
-                        <input type="hidden" name="invoice_item_id" id="invoice_item_id" value=""> 
-
-                        <input type="text" class="form-control" id="invoice_item_name" name="invoice_item_name" autocomplete="off" placeholder="Product Name"  />
+                        <label class="control-label">Line Total</label>                        
+                        <input type="text" class="form-control" id="txtLineTotal" name="txtLineTotal" autocomplete="off" placeholder="Total"  value="0.00" />
+                      </div>                  
+                    </div>
+                    <div class="col-md-12 sale-no-padding">
+                       <div class="form-group col-md-2 sale-form-group-padding">
+                        <label class="control-label">Stock</label>                        
+                        <input type="text" class="form-control" id="txtProductStock" name="txtProductStock" autocomplete="off" placeholder="Product Name"  hidden="" />
                       </div>
-                      <div class="form-group col-md-2 sale-form-group-padding">
-                        <label class="control-label">Stock</label>
-                        
-                        <input type="hidden" name="invoice_item_id" id="invoice_item_id" value=""> 
-
-                        <input type="text" class="form-control" id="invoice_item_name" name="invoice_item_name" autocomplete="off" placeholder="Product Name"  />
-                      </div>
-
                     </div>
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button  class="btn btn-icon btn-primary">Add</button>
+                    <button  class="btn btn-icon btn-primary" name="txtAddItem" id="txtAddItem" >Add</button>
                   </div>
-                </form>
+                </form>  
               </div>
             </div>
             <div class="col-md-3 sale-payment-details">
@@ -156,7 +144,7 @@
                 <!-- form start -->
                 <div>
                   <div class="box-body ">    
-                    <table class="table table-hover table-striped table-bordered">
+                    <table class="table table-hover table-striped table-bordered" id="tblItems" name="tblItems">
                       <tbody>
                         <thead>
                             <th class="text-center" >Item Name</th>
@@ -167,50 +155,6 @@
                             <th class="text-center" >Line Total</th>
                             <th class="text-center" >&nbsp;</th>
                         </thead>
-                        <tr>
-                            <td class="text-center" >Item Name</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >0%</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >0</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >
-                              <button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" >Item Name</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >0%</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >0</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >
-                              <button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" >Item Name</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >0%</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >0</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >
-                              <button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" >Item Name</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >0%</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >0</td>
-                            <td class="text-center" >0.00</td>
-                            <td class="text-center" >
-                              <button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>
-                            </td>
-                        </tr>
                       </tbody>
                     </table>                
                   </div><!-- /.box-body -->                  

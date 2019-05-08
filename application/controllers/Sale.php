@@ -25,6 +25,8 @@ class Sale extends My_Controller {
 		$data['categories'] = $this->common->get_data_where('category',['status'=>1]);
 		$data['invoice_number'] = $this->sale_m->getInvoiceNumber();
 		$data['invoice_date'] = $this->unix_date;
+		$data['user_name'] = $this->user_name;
+		$data['shop_ID'] = $this->shop_ID;
 		$this->load->view($this->header);
 		$this->load->view($this->template.'header');
 		$this->load->view($this->template.'sidebar');

@@ -36,7 +36,7 @@ $(document).ready(function(){
 			txtUserEmail: {
 					required: true,	
 					remote :{
-						url:base_url+"ajax/check_user_eamil_excist",
+						url:base_url+"ajax/check_user_email_excist",
 						type:"post",
 						data:{
 							txtUserEmail:function(){

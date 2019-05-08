@@ -22,9 +22,17 @@
       <script src="<?php echo assets_url();?>dist/js/app.min.js" type="text/javascript"></script>
       <script src="<?php echo assets_url();?>plugins/jQuery/jquery.validate.min.js"></script>
       <script src="<?php echo assets_url();?>plugins/jQuery/additional-methods.min.js"></script>
-      <script src="<?php echo assets_url();?>plugins/select2/js/select2.min.js"></script>
+      <script src="<?php echo assets_url();?>plugins/jQueryUI/jquery-ui-1.10.3.min.js"></script>
+      
+      <!-- <script src="<?php echo assets_url();?>plugins/select2/js/select2.min.js"></script> -->
+      <!-- <script src="<?php //echo assets_url(); ?>plugins/bootstrap-typehead/bootstrap3-typeahead.min.js" type="text/javascript"></script>  -->
+
+
+  <!-- bootstrap type a head script -->
+
       <script>
         var base_url = '<?php echo base_url();?>';
+        var shop_ID = '<?php echo get_shop_id();?>';
         $('button').addClass('disabled');
       </script>
       <?php 

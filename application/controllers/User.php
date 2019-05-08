@@ -30,6 +30,7 @@ class user extends My_Controller {
 	}
 	public function insert() {
 		$msg = '';
+
 		$user_type_ID = $this->input->post('txtUserType',TRUE);
 		$user_name = $this->input->post('txtUserName',TRUE);
 		$user_password = $this->input->post('txtUserPassword',TRUE);
@@ -40,7 +41,6 @@ class user extends My_Controller {
 		$user_email = $this->input->post('txtUserEmail',TRUE);
 		$user_phone = $this->input->post('txtUserPhone',TRUE);
 		$user_address = $this->input->post('txtUserAddress',TRUE);
-
 
 		$insert = [
 		'user_type_ID'=>$user_type_ID,	

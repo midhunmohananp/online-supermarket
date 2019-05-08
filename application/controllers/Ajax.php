@@ -7,6 +7,7 @@ class Ajax extends CI_Controller {
 	public function __construct() {
 		parent::__construct();	
 		$this->load->model('product_m');			
+		$this->load->model('customer_m');			
 	}
 	public function check_shop_excist_location($shop_ID = NULL) {
 
@@ -58,10 +59,10 @@ class Ajax extends CI_Controller {
 		}
 		echo json_encode($json);
 	}
-	public function check_user_eamil_excist() {
+	public function check_user_email_excist() {
 
 		$user_email = $this->input->post('txtUserEmail',TRUE);
-		$user = $this->common->get_data_where_row('user',['user_email'=>$user_email]);
+		$user = $this->common->get_data_where_row('user_detail',['user_email'=>$user_email]);
 		if($user == TRUE) {					
 			$json =  "User email Already Excist";
 		} else {
@@ -123,18 +124,61 @@ class Ajax extends CI_Controller {
 		}
 		echo json_encode($json);
 	}
-	public function shop_product_search_by_name() {
-		/*
-			shopid
-			return
-		*/	$json = [];
-			// $shop_ID = $this->input->post('shop_id',TRUE);
-			$name = $this->input->get('q',TRUE);
-			$products = $this->product_m->shopProductSearchByName($name);
-			if($products == TRUE) {
-				$json = $products;
-			} 
-			echo json_encode($json);
+	public function customerDetails() {
+
+		$search_name = $this->input->post('term',TRUE);
+		$customers = $this->customer_m->customer_details($search_name);
+		if($customers == TRUE) {
+			$customer_details = [];
+			foreach ($customers as $customer) {
+				$name = $customer->first_name.' '.$customer->middle_name.' '.$customer->last_name;
+				$customer_detail['label'] = $name;
+				$customer_detail['value'] = $name;
+				$customer_detail['id'] = $customer->customer_ID;
+				$customer_detail['mobile_number'] = $customer->phone;
+				$customer_detail['email'] = $customer->email;
+				$customer_details [] = $customer_detail;
+			}
+			$response_data = [
+				'status'=>true,
+				'data'=>$customer_details
+			];
+		} else {
+			$response_data = [
+				'status'=>false
+			];
+		}
+		
+		echo json_encode($response_data);
 	}
-	//bn0rwpkz0m71S
+	public function productDetails($shop_ID)
+	{
+		$search_name = $this->input->post('term',TRUE);
+		$products = $this->product_m->shopProductSearchByName($search_name,$shop_ID);
+		if($products == TRUE) {
+			$productDetails = [];
+			foreach ($products as $product) {
+				// $name = $customer->first_name.' '.$customer->middle_name.' '.$customer->last_name;
+				$productDetail['label'] = $product->name;
+				$productDetail['value'] = $product->name;
+				$productDetail['store_ID'] = $product->store_ID;
+				$productDetail['product_ID'] = $product->product_ID;
+				$productDetail['name'] = $product->name;
+				$productDetail['unit_price'] = $product->unit_price;
+				$productDetail['stock'] = $product->stock;
+				$productDetail['tax_rate'] = $product->tax_rate;
+				$productDetails [] = $productDetail;
+			}
+			$response_data = [
+				'status'=>true,
+				'data'=>$productDetails
+			];
+		} else {
+			$response_data = [
+				'status'=>false
+			];
+		}
+		
+		echo json_encode($response_data);
+	}
 }

@@ -53,6 +53,7 @@ $route['customer-insert'] = 'Customer/insert';
 $route['customer-edit/(:any)'] = 'Customer/edit/$1';
 $route['customer-delete/(:any)'] = 'Customer/delete/$1';
 $route['customer-listing'] = 'Customer/listing';
+
 //access
 $route['access-grand'] = 'Access/grand';
 $route['access-grand-insert'] = 'Access/access_grand_insert';
@@ -79,3 +80,8 @@ $route['purchase-listing'] = 'Purchase/listing';
 $route['pos'] = 'Sale/new_sale';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// Ajax
+$route['customer-name/search'] = 'Ajax/customerDetails';
+$route['sale/products/search/(:any)'] = 'Ajax/productDetails/$1';
+

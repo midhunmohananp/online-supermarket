@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 Class User_m extends CI_Model {
 
 	public function user_details($user_ID) {
-		$this->db->select('ud.First_name,ud.middle_name,ud.last_name,ud.user_email,ud.user_phone,ud.user_address');
+		$this->db->select('ud.first_name,ud.middle_name,ud.last_name,ud.user_email,ud.user_phone,ud.user_address');
 		$this->db->from('user_detail ud');
 		$this->db->where('ud.user_ID',$user_ID);
 		$this->db->where('ud.status',1);

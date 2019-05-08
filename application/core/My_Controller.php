@@ -9,6 +9,7 @@ class My_Controller extends CI_Controller
 		protected $footer;//footer folder
 		protected $body;//body folder
 		protected $user_ID;//userid
+		protected $user_name;//username
 		protected $shop_ID;//shopid
 		protected $user_type_ID;//usertypeid
 		protected $logged;//
@@ -35,6 +36,8 @@ class My_Controller extends CI_Controller
 			 	$this->access_slug = createslug($this->curr_controller.' '.$this->curr_method);
 			 	$this->access = $this->access_m->check_grand_access($this->user_type_ID,$this->access_slug);
 			 	$this->unix_date = unix_to_human(time(),TRUE);
+			 	$user_name = $this->user_m->user_details($this->user_ID);
+			 	$this->user_name = $user_name->first_name;
 			 	/*if($this->access == TRUE) {
 			 		if($this->access->status == 1) {
 			 		

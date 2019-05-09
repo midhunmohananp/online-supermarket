@@ -118,10 +118,15 @@ class Ajax extends CI_Controller {
 		}
 		echo json_encode($json);
 	}
-	public function check_unit_name_excist() {
+	public function check_unit_name_excist($unit_ID = NULL) {
 
 		$unit_name = $this->input->post('txtUnitName',TRUE);
-		$unit = $this->common->get_data_where_row('unit_of_measure',['unit_name'=>$unit_name]);
+		$condition = [];
+		$condition['unit_name'] = $unit_name;
+		if($unit_ID == TRUE) {
+		$condition['unit_ID !='] = $unit_ID;
+		}
+		$unit = $this->common->get_data_where_row('unit_of_measure',$condition);
 		if($unit == TRUE) {					
 			$json =  "unit name Already Excist";
 		} else {

@@ -37,7 +37,7 @@ $(".btn").removeClass('disabled');
 			txtTaxName: {
 					required: true,
 					remote :{
-						url:base_url+"ajax/check_tax_name_excist/"+$("input[name='txtTaxId']").val(),
+						url:base_url+"ajax/check_tax_name_excist/"+$("input[name='txtUnitId']").val(),
 						type:"post",
 						data:{
 							txtTaxName:function(){
@@ -64,4 +64,5 @@ $(".btn").removeClass('disabled');
   $('#btnTaxEdit').click(function(){
     $("#formTaxEdit").valid();
   });
+  $('#taxList').dataTable({});
 });

@@ -40,6 +40,7 @@ $route['tax-listing'] = 'Tax/listing';
 $route['unit-add'] = 'Unit/add';
 $route['unit-insert'] = 'Unit/insert';
 $route['unit-edit/(:any)'] = 'Unit/edit/$1';
+$route['unit-update/(:any)'] = 'Unit/update/$1';
 $route['unit-delete/(:any)'] = 'Unit/delete/$1';
 $route['unit-listing'] = 'Unit/listing';
 //User

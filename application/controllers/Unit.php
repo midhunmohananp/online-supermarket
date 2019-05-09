@@ -55,4 +55,33 @@ class Unit extends My_Controller {
 		$this->load->view($this->body.'list',$data);
 		$this->load->view($this->footer);
 	}
+	public function edit($unit_ID)	{		
+		$data['pageheading'] = 'Unit Edit';
+		$data['unit'] = $this->common->get_data_where_row('unit_of_measure',['unit_ID'=>$unit_ID]);	
+		$data['cjs'] = $this->cjs;
+		$this->load->view($this->header);
+		$this->load->view($this->template.'header');
+		$this->load->view($this->template.'sidebar');
+		$this->load->view($this->template.'heading',$data);
+		$this->load->view($this->body.'edit',$data);
+		$this->load->view($this->footer);
+	}	
+	public function update($unit_ID) {
+		$msg = '';
+		$unit_name = $this->input->post('txtUnitName',TRUE);
+		$unit_symbol = $this->input->post('txtUnitSymbol',TRUE);
+		$update_data = [
+		'unit_name'=>$unit_name,
+		'unit_symbol'=>$unit_symbol,
+		'unit_slug'=>createslug($unit_name),
+		];
+		$condition = ['unit_ID'=>$unit_ID];
+		$update = $this->common->update_data('unit_of_measure',$update_data,$condition);
+		if($update == TRUE) {
+			$msg = 'Unit has been successfully updated.';
+			$this->session->set_flashdata('success',$msg);
+		}
+		redirect('unit-listing');
+	}
+
 }

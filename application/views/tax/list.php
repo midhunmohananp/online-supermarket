@@ -6,7 +6,7 @@
                   <!-- <h3 class="box-title">Hover Data Table</h3> -->
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="productList" name="productList" class="table table-bordered table-hover">
+                  <table id="taxList" name="taxList" class="table table-bordered table-hover table-responsive">
                     <thead>
                       <tr>
                         <th>Tax Name</th>

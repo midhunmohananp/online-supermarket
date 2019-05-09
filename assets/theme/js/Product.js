@@ -6,7 +6,7 @@ $(document).ready(function(){
 					required: true,					
 			},
       txtProductDescription: {
-					required: true,					
+					// required: true,					
 			},
 			txtProductHSN: {
 								required: true,
@@ -21,10 +21,10 @@ $(document).ready(function(){
 					}
 						},
 			txtProductColor: {
-					required: true,
+					// required: true,
 			},
 			txtProductSize: {
-					required: true,
+					// required: true,
 			},
 			txtProductCategory: {
 					required: true,

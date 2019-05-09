@@ -22,15 +22,17 @@ $(document).ready(function(){
 			},
 			txtProductQty: {
 					required: true,
+					number: true,
 			},
 			txtProductTax: {
 					required: true,
 			},
 			txtProductUnitPrice: {
 					required: true,
+					number: true,
 			},
 			txtProductPurchasePrice: {
-					required: true,
+					number: true,
 			}
 	 },
   messages: {

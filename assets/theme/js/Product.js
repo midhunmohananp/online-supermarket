@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#btnProductAdd").removeClass('disabled');
+	$(".btn").removeClass('disabled');
   $("#formProductAdd").validate({
     rules: {
 			txtProductName: {
@@ -25,6 +25,7 @@ $(document).ready(function(){
 			},
 			txtProductSize: {
 					// required: true,
+					number:true
 			},
 			txtProductCategory: {
 					required: true,

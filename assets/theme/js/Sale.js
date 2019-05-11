@@ -10,33 +10,39 @@ $(document).ready(function(e){
 					required: true,
 				},
 			customers_name: {
-					required: true,
+					//required: true,
 				},
 			txtCustomerMobile: {
-					required: true,
+					//required: true,
+					number : true
 				},
 			product_name: {
 					required: true,
 				},
 			txtProuductUnitPrice: {
 					required: true,
+					number: true
 				},
 			txtProductQty: {
 					required: true,
+					number: true
 				},
 			txtProductTax: {
 					required: true,
+					number: true
 				},
 			txtProductDiscount: {
 					required: true,
+					number: true
 				},
 			txtLineTotal: {
 					required: true,
+					number: true
 				}
 
 	 }
   });
-  $('#txtAddItem').click(function(event){
+  $('#txtAddItem').click(function(event){  	
     if($("#saleItemAdd").valid()) {
     	event.preventDefault();
     	var $txtProductID = $("#txtProductID").val();
@@ -52,10 +58,10 @@ $(document).ready(function(e){
     	$invoice_item['product_ID'] = $txtProductID;
     	$invoice_item['product_store_ID'] = $txtStoreID;
     	$invoice_item['product_name'] = $product_name;
-    	$invoice_item['product_unit_price'] = $txtProductID;
+    	$invoice_item['product_unit_price'] = $txtProuductUnitPrice;
     	$invoice_item['product_tax'] = $txtProductTax;
-    	$invoice_item['product_discount'] = $txtProductID;
-    	$invoice_item['product_qty'] = $txtProductID;
+    	$invoice_item['product_discount'] = $txtProductDiscount;
+    	$invoice_item['product_qty'] = $txtProductQty;
     	$invoice_item['product_line_total'] = $txtLineTotal; 
     	if($invoice_items.length > 0) {   	
 	    	$invoice_items.forEach(function($item) {
@@ -69,7 +75,7 @@ $(document).ready(function(e){
 	    		}
 	    	});
 	    } else {
-	    	
+	    	addInvoiceItem($invoice_item);
 	    }
     	
     }
@@ -136,7 +142,7 @@ function loadProducts() {
 	});
 }
 function addInvoiceItem(item) {	    	
-		$invoice_items.push($item);
+		$invoice_items.push(item);
 		$("#tblItems tr:last").after(
 			'<tr>'+
 				'<td class="text-center" >'+item['product_name']+'</td>'+

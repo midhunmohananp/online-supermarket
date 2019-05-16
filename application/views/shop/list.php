@@ -25,7 +25,7 @@
                         <td>'.$shop->shop_name.'</td>
                         <td>'.$shop->shop_location.'</td>
                         <td>'.$shop->shop_address.'</td>
-                        <td><a href="'.site_url(['shop-edit',$shop->shop_ID]).'"><button class="btn btn-sm btn-primary">Edit</button></a> <button class="btn btn-sm btn-danger">Delete</button></td>
+                        <td><a href="'.site_url(['shop-edit',$shop->shop_ID]).'"><button class="btn btn-sm btn-primary">Edit</button></a> <button class="btn btn-sm btn-danger" data-toggle="modal" data-shopid="'.$shop->shop_ID.'" data-target="#modalShopDelete">Delete</button></td>
                       </tr>';
 
                       }
@@ -40,3 +40,25 @@
 
   </section>
   <!-- modals -->
+  <div class="modal fade" id="modalShopDelete" tabindex="-1" role="dialog" aria-labelledby="modalShopDeleteLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalShopDeleteLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <?php echo form_open_multipart('shop-delete',['id'=>'formShopDelete','name'=>'formShopDelete','role'=>'form'])?>
+      <div class="modal-body">
+        Are you sure want to delete?
+        <input type="hidden" name="txtShopId" id="txtShopId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="save" class="btn btn-danger">Delete</button>
+      </div>
+      <?php echo form_close();?>
+    </div>
+  </div>
+</div>

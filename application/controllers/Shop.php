@@ -89,7 +89,7 @@ class Shop extends My_Controller {
 	}
 	public function delete() {
 		$msg = '';
-		$shop_ID = $this->input->post('txtShoId',TRUE);
+		$shop_ID = $this->input->post('txtShopId',TRUE);
 		$delete = [
 		'shop_ID'=>$shop_ID,
 		];
@@ -98,6 +98,6 @@ class Shop extends My_Controller {
 			$msg = 'Shop has been successfully deleted.';
 			$this->session->set_flashdata('success',$msg);
 		}
-		redirect('shop-list');
+		redirect('shop-listing');
 	}
 }

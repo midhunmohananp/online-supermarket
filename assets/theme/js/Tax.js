@@ -65,4 +65,10 @@ $(".btn").removeClass('disabled');
     $("#formTaxEdit").valid();
   });
   $('#taxList').dataTable({});
+	  $('#modalTaxDelete').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var taxID = button.data('taxid') 
+	  var modal = $(this)
+	  modal.find('#txtTaxId').val(taxID)
+	})
 });

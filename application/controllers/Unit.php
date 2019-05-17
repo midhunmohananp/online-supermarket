@@ -83,5 +83,18 @@ class Unit extends My_Controller {
 		}
 		redirect('unit-listing');
 	}
+	public function delete() {
+		$msg = '';
+		$unit_ID = $this->input->post('txtUnitId',TRUE);
+		$delete = [
+		'unit_ID'=>$unit_ID,
+		];
+		$update = $this->common->delete_data('unit_of_measure',$delete);
+		if($update == TRUE) {
+			$msg = 'Unit has been successfully deleted.';
+			$this->session->set_flashdata('success',$msg);
+		}
+		redirect('unit-listing');
+	}
 
 }

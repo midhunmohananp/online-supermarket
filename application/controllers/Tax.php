@@ -83,4 +83,17 @@ class Tax extends My_Controller {
 		}
 		redirect('tax-listing');
 	}
+	public function delete() {
+		$msg = '';
+		$tax_ID = $this->input->post('txtTaxId',TRUE);
+		$delete = [
+		'tax_ID'=>$tax_ID,
+		];
+		$update = $this->common->delete_data('tax',$delete);
+		if($update == TRUE) {
+			$msg = 'Tax has been successfully deleted.';
+			$this->session->set_flashdata('success',$msg);
+		}
+		redirect('tax-listing');
+	}
 }

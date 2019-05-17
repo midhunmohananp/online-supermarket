@@ -34,14 +34,14 @@ $route['tax-add'] = 'Tax/add';
 $route['tax-insert'] = 'Tax/insert';
 $route['tax-edit/(:any)'] = 'Tax/edit/$1';
 $route['tax-update/(:any)'] = 'Tax/update/$1';
-$route['tax-delete/(:any)'] = 'Tax/delete/$1';
+$route['tax-delete'] = 'Tax/delete';
 $route['tax-listing'] = 'Tax/listing';
 //Unit
 $route['unit-add'] = 'Unit/add';
 $route['unit-insert'] = 'Unit/insert';
 $route['unit-edit/(:any)'] = 'Unit/edit/$1';
 $route['unit-update/(:any)'] = 'Unit/update/$1';
-$route['unit-delete/(:any)'] = 'Unit/delete/$1';
+$route['unit-delete'] = 'Unit/delete';
 $route['unit-listing'] = 'Unit/listing';
 //User
 $route['user-add'] = 'User/add';

@@ -78,7 +78,6 @@ $(document).ready(function(){
    $('#modalShopDelete').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var shopID = button.data('shopid') 
-  console.log(shopID);
   var modal = $(this)
   modal.find('#txtShopId').val(shopID)
 })

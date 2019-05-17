@@ -63,4 +63,10 @@ $(document).ready(function(){
     $("#formCategoryEdit").valid();
   });
   $('#categoryList').dataTable({});
+	  $('#modalCategoryDelete').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var categoryID = button.data('categoryid') 
+	  var modal = $(this)
+	  modal.find('#txtCategoryId').val(categoryID)
+	})
 });

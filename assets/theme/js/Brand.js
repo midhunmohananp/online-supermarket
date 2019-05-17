@@ -53,5 +53,11 @@ $(document).ready(function(){
     $("#formBrandEdit").valid();
   });
    $('#brandList').dataTable({});
+  $('#modalBrandDelete').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var brandID = button.data('brandid')
+	  var modal = $(this)
+	  modal.find('#txtBrandId').val(brandID)
+	})
 
 });

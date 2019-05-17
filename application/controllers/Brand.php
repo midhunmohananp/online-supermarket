@@ -79,4 +79,17 @@ class Brand extends My_Controller {
 		}
 		redirect('brand-listing');
 	}
+	public function delete() {
+		$msg = '';
+		$brand_ID = $this->input->post('txtBrandId',TRUE);
+		$delete = [
+		'brand_ID'=>$brand_ID,
+		];
+		$update = $this->common->delete_data('brand',$delete);
+		if($update == TRUE) {
+			$msg = 'Brand has been successfully deleted.';
+			$this->session->set_flashdata('success',$msg);
+		}
+		redirect('brand-listing');
+	}
 }

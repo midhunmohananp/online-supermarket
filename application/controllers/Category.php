@@ -86,4 +86,17 @@ class Category extends My_Controller {
 		}
 		redirect('category-listing');
 	}
+	public function delete() {
+		$msg = '';
+		$category_ID = $this->input->post('txtCategoryId',TRUE);
+		$delete = [
+		'category_ID'=>$category_ID,
+		];
+		$update = $this->common->delete_data('category',$delete);
+		if($update == TRUE) {
+			$msg = 'Category has been successfully deleted.';
+			$this->session->set_flashdata('success',$msg);
+		}
+		redirect('category-listing');
+	}
 }

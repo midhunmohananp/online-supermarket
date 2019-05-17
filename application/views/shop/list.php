@@ -18,16 +18,18 @@
                     </thead>
                     <tbody>
                     <?php
-                    foreach ($shops as $shop) {
-                    	# code...
-                    
-                      echo '<tr>
-                        <td>'.$shop->shop_name.'</td>
-                        <td>'.$shop->shop_location.'</td>
-                        <td>'.$shop->shop_address.'</td>
-                        <td><a href="'.site_url(['shop-edit',$shop->shop_ID]).'"><button class="btn btn-sm btn-primary">Edit</button></a> <button class="btn btn-sm btn-danger" data-toggle="modal" data-shopid="'.$shop->shop_ID.'" data-target="#modalShopDelete">Delete</button></td>
-                      </tr>';
+                    if($shops == true) {
+                      foreach ($shops as $shop) {
+                      	# code...
+                      
+                        echo '<tr>
+                          <td>'.$shop->shop_name.'</td>
+                          <td>'.$shop->shop_location.'</td>
+                          <td>'.$shop->shop_address.'</td>
+                          <td><a href="'.site_url(['shop-edit',$shop->shop_ID]).'"><button class="btn btn-sm btn-primary">Edit</button></a> <button class="btn btn-sm btn-danger" data-toggle="modal" data-shopid="'.$shop->shop_ID.'" data-target="#modalShopDelete">Delete</button></td>
+                        </tr>';
 
+                        }
                       }
                       ?>
                       </tbody>

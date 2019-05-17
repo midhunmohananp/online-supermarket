@@ -15,14 +15,16 @@
                     </thead>
                     <tbody>
                     <?php
-                    foreach ($categories as $category) {
-                    	# code...
-                    
-                      echo '<tr>
-                        <td>'.$category->category_name.'</td>
-                        <td><a href="'.site_url(['category-edit',$category->category_ID]).'"><button class="btn btn-sm btn-primary">Edit</button></a> <button class="btn btn-sm btn-danger">Delete</button></td>
-                      </tr>';
+                    if($categories == true) {
+                      foreach ($categories as $category) {
+                      	# code...
+                      
+                        echo '<tr>
+                          <td>'.$category->category_name.'</td>
+                          <td><a href="'.site_url(['category-edit',$category->category_ID]).'"><button class="btn btn-sm btn-primary">Edit</button></a> <button class="btn btn-sm btn-danger" data-toggle="modal" data-categoryid="'.$category->category_ID.'" data-target="#modalCategoryDelete">Delete</button></td>
+                        </tr>';
 
+                        }
                       }
                       ?>
                       </tbody>
@@ -34,3 +36,26 @@
                       </div>
 
   </section>
+   <!-- modals -->
+  <div class="modal fade" id="modalCategoryDelete" tabindex="-1" role="dialog" aria-labelledby="modalCategoryDeleteLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCategoryDeleteLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <?php echo form_open_multipart('category-delete',['id'=>'formCategoryDelete','name'=>'formCategoryDelete','role'=>'form'])?>
+      <div class="modal-body">
+        Are you sure want to delete?
+        <input type="hidden" name="txtCategoryId" id="txtCategoryId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="save" class="btn btn-danger">Delete</button>
+      </div>
+      <?php echo form_close();?>
+    </div>
+  </div>
+</div>

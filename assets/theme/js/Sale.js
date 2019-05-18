@@ -1,5 +1,6 @@
 var $invoice_items = [];
 $(document).ready(function(e){
+  loadPaymentDetails();
   $(".btn").removeClass('disabled');
   $("#saleItemAdd").validate({
     rules: {
@@ -65,9 +66,6 @@ $(document).ready(function(e){
     	$invoice_item['product_line_total'] = $txtLineTotal; 
     	if($invoice_items.length > 0) {   	
 	    	$invoice_items.forEach(function($item) {
-	    		console.log($item);
-	    		console.log($item.product_ID);
-	    		console.log($txtProductID);
 	    		if($item.product_ID == $txtProductID) {
 	    			console.log('already excist');
 	    		} else {
@@ -108,7 +106,7 @@ function loadCustomer() {
 	        $("#txtCustomerMobile").val(_data.mobile_number);  
 	        $("#txtCustomerEmail").val(_data.email);  
 	    },      
-	});
+	}).autocomplete( "widget" ).addClass( "btn-secondary" );
 }
 function loadProducts() {
 	$("#product_name").autocomplete({
@@ -137,23 +135,74 @@ function loadProducts() {
 	        $("#txtProuductUnitPrice").val(_data.unit_price);
 	        $("#txtProductTax").val(_data.tax_rate);
 	        $("#txtProductQty").val(1);
+	        $("#txtProductDiscount").val(0);
+	        $line_total = getLineTotal(_data.unit_price,_data.tax_rate,1,0);
+	        $("#txtLineTotal").val($line_total);
 	        $("#txtProductStock").val(_data.stock);
 	    },      
 	});
+	    
 }
 function addInvoiceItem(item) {	    	
 		$invoice_items.push(item);
+		$price = parseInt(item['product_unit_price']);
+		$tax = item['product_tax'];
+		$quantity = parseInt(item['product_qty']);
+		$discount = parseInt(item['product_discount']);
+		$tax_amount = ($price*$tax)/100;
+		$tax_price = $price+($tax_amount);
+		$discount_amount = ($price*$discount)/100;
+		$line_total = (($tax_price)-($discount_amount))*$quantity;
 		$("#tblItems tr:last").after(
 			'<tr>'+
 				'<td class="text-center" >'+item['product_name']+'</td>'+
               	'<td class="text-center" >'+item['product_unit_price']+'</td>'+
+                '<td class="text-center" >'+item['product_tax']+'</td>'+
+                '<td class="text-center" >'+$tax_price+'</td>'+
                 '<td class="text-center" >'+item['product_discount']+'</td>'+
-                '<td class="text-center" >Discount Price</td>'+
+                '<td class="text-center" >'+$discount_amount+'</td>'+
                 '<td class="text-center" >'+item['product_qty']+'</td>'+
-                '<td class="text-center" >'+item['product_line_total']+'</td>'+
+                '<td class="text-center" >'+$line_total+'</td>'+
                 '<td class="text-center">'+
                     '<button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>'+
                 '</td>'+		
 			'</tr>'
-		);
+		);	
+		loadPaymentDetails();
+}
+
+function loadPaymentDetails() {
+	var $g_sub_total = 0.00;
+	var $g_tax_amount = 0.00;
+	var $g_discount = 0.00;
+	var $grand_total = 0.00;
+	$invoice_items.forEach(function(item) {
+		$price = parseInt(item['product_unit_price']);
+		$tax = parseInt(item['product_tax']);
+		$quantity = parseInt(item['product_qty']);
+		$discount = parseInt(item['product_discount']);
+		$tax_amount = ($price*$tax)/100;
+		$tax_price = $price+($tax_amount);
+		$discount_amount = ($price*$discount)/100;
+		$line_total = (($tax_price)-($discount_amount))*$quantity;
+
+		$g_sub_total = $g_sub_total+$price;
+		$g_tax_amount = $g_tax_amount+$tax_amount;
+		$g_discount = $g_discount+$discount_amount;
+		$grand_total = $grand_total+$line_total;
+	});
+	$("#subTotal").html(toCurrency($g_sub_total));
+	$("#taxAmount").html(toCurrency($g_tax_amount));
+	$("#discount").html(toCurrency($g_discount));
+	$("#grandTotal").html(toCurrency($grand_total));
+}
+function getLineTotal($price,$tax,$quantity,$discount) {
+	$price = parseInt($price);
+	$tax = parseInt($tax);
+	$quantity = parseInt($quantity);
+	$discount = parseInt($discount);
+	$tax_amount = ($price*$tax)/100;
+	$discount_amount = ($price*$discount)/100;
+	$line_total = ($price+($tax_amount)-($discount_amount))*$quantity;
+	return toCurrency($line_total);
 }

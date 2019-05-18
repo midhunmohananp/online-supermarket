@@ -109,22 +109,22 @@
                         <tr>
                           <td>Sub Total</td>
                           <td>:</td>
-                          <td>0.00</td>
+                          <td id="subTotal">0.00</td>
                         </tr>
                         <tr>
                           <td>Tax Amount</td>
                           <td>:</td>
-                          <td>0.00</td>
+                          <td id="taxAmount">0.00</td>
                         </tr>
                         <tr>
                           <td>Discount</td>
                           <td>:</td>
-                          <td>0.00</td>
+                          <td id="discount">0.00</td>
                         </tr>
                         <tr>
                           <td>Grand Total</td>
                           <td>:</td>
-                          <td>0.00</td>
+                          <td id="grandTotal">0.00</td>
                         </tr>
                       </tbody>
                     </table> 
@@ -148,6 +148,8 @@
                       <tbody>
                         <thead>
                             <th class="text-center" >Item Name</th>
+                            <th class="text-center" >Unit Price</th>
+                            <th class="text-center" >Tax(%)</th>
                             <th class="text-center" >Price(inc.Tax)</th>
                             <th class="text-center" >Discount(%)</th>
                             <th class="text-center" >Discount Price</th>

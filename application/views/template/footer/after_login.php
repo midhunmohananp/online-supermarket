@@ -35,7 +35,8 @@
         var shop_ID = '<?php echo get_shop_id();?>';
         $('button').addClass('disabled');
       </script>
-      <?php 
+      <?php
+      echo '<script src="'.assets_url().'theme/js/common.js" type="text/javascript"></script>'; 
       if(isset($cjs)) {
         foreach ($cjs as $js) {
          echo '<script src="'.assets_url().'theme/js/'.$js.'.js" type="text/javascript"></script>';

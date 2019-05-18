@@ -13,6 +13,7 @@ class Sale extends My_Controller {
 		$this->header = $this->template.'header/after_login';
 		$this->footer = $this->template.'footer/after_login';
 		$this->load->model('sale_m');
+		$this->load->model('store_m');
 	}
 	public function index()	{
 		$this->new_sale();
@@ -36,6 +37,76 @@ class Sale extends My_Controller {
 	}
 	public function saveSale()
 	{
+		$customer_ID= $this->input->post('customer_id',TRUE);
+		$customer_name = $this->input->post('customer_name',TRUE);
+		$customer_mobile = $this->input->post('customer_mobile',TRUE);
+		$customer_email = $this->input->post('customer_email',TRUE);
+		$invoice_items = json_decode($this->input->post('invoice_items',TRUE));
+
+		$invoice_number = $this->sale_m->getInvoiceNumber();
+		$total_amount = 0.00;
+		$balance_amount = 0.00;
+		$discount_amount = 0.00;
+		$net_amount = 0.00;
+		$payed_amount = 0.00;
+		$balance_amount = 0.00;
+		$balance_amount = 0.00;
+		foreach ($invoice_items as $item) {
+			$price = $item->product_unit_price;
+			$tax = $item->product_tax;
+			$discount = $item->product_discount;
+			$quantity = $item->product_qty;
+			$item_tax_amount = ($price*$tax)/100;
+			$item_discount_amount = ($price*$discount)/100;
+			$item_total_amount = (($price+$item_tax_amount))*$quantity;
+			$item_net_amount=($item_total_amount-$item_discount_amount);
+			$total_amount = $total_amount+$item_total_amount;
+			$discount_amount = $discount_amount+$item_discount_amount;
+			$net_amount = $net_amount+$item_net_amount;
+			$payed_amount = $payed_amount+$item_net_amount;
+		}
+		$invoice = [
+			'invoice_number'=>'invoice_'.$invoice_number,
+			'shop_ID'=>$this->shop_ID,
+			'customer_ID'=>$customer_ID,
+			'total_amount'=>$total_amount,
+			'discount_amount'=>$discount_amount,
+			'net_amount'=>$net_amount,
+			'payed_amount'=>$payed_amount,
+			'balance_amount'=>$balance_amount,
+			'payment_status'=>1,
+			'status'=>1,
+			'date_created'=>unix_to_human($this->now,TRUE)
+		];
+		$invoice_ID = $this->common->insert_data('invoice',$invoice);
+		if($invoice_ID == true) {
+			foreach ($invoice_items as $item) {
+				$price = $item->product_unit_price;
+				$tax = $item->product_tax;
+				$discount = $item->product_discount;
+				$product_quantity = $item->product_qty;
+				$product_tax_amount = ($price*$tax)/100;
+				$product_discount = ($price*$discount)/100;
+				$product_amount = (($price+$product_tax_amount));
+				$product_total_amount = ($product_amount-$product_discount)*$product_quantity;
+				$invoice_item = [
+					'invoice_ID'=>$invoice_ID,
+					'store_ID'=>$item->product_store_ID,
+					'shop_ID'=>$this->shop_ID,
+					'product_ID'=>$item->product_ID,
+					'product_unit_price'=>$price,
+					'product_quantity'=>$product_quantity,
+					'product_amount'=>$product_amount,
+					'product_discount'=>$product_discount,
+					'product_tax_amount'=>$product_tax_amount,
+					'product_total_amount'=>$product_total_amount,
+					'status'=>1,
+					'date_created'=>unix_to_human($this->now,TRUE)
+				];
+				$invoice_item_ID = $this->common->insert_data('invoice_item',$invoice_item);
+				$update = $this->store_m->qty_update($item->product_store_ID,$product_quantity);
+			}
+		}	
 		$return_data = [
 			'success'=>true
 		];

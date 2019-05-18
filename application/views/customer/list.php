@@ -28,7 +28,7 @@
                     	# code...
                     
                       echo '<tr>
-                        <td>'.$customer->fisrt_name.'</td>
+                        <td>'.$customer->first_name.'</td>
                         <td>'.$customer->middle_name.'</td>
                         <td>'.$customer->last_name.'</td>
                         <td>'.$customer->email.'</td>

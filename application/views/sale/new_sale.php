@@ -41,7 +41,7 @@
                       <div class="col-md-12 sale-no-padding">
                         <div class="form-group col-md-4 sale-form-group-padding">
                           <input type="text" class="form-control" id="customers_name" name="customers_name" data-validate="required" data-message-required="This is required field." autocomplete="off" placeholder="Customer Name"  onKeypress="loadCustomer()"/>
-                          <input type="hidden" name="txtCustomerID" id="txtCustomerID">
+                          <input type="hidden" name="txtCustomerID" id="txtCustomerID" value="">
                         </div>
                         <div class="form-group col-md-4 sale-form-group-padding">
                           <input type="text" id="txtCustomerMobile" name="txtCustomerMobile" class="form-control" placeholder="Mobile Number"/>
@@ -68,7 +68,7 @@
                           </div>
                           <div class="form-group col-md-1 sale-form-group-padding">
                             <label class="control-label">Quantity</label>                        
-                            <input type="text" class="form-control" id="txtProductQty" name="txtProductQty" autocomplete="off" placeholder="Qty"  />
+                            <input type="text" class="form-control" id="txtProductQty" name="txtProductQty" autocomplete="off" placeholder="Qty" />
                           </div>                      
                           <div class="form-group col-md-2 sale-form-group-padding">
                             <label class="control-label">Discount(%)</label>                        

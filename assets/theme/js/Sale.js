@@ -81,18 +81,46 @@ $(document).ready(function(e){
     }
 
   });
+  $(document).on('change', '#txtProductQty,#txtProductDiscount', function () {
+	        var unit_price = $("#txtProuductUnitPrice").val();
+	        var tax_rate = $("#txtProductTax").val();
+	        var qty = $("#txtProductQty").val();
+	        var discount = $("#txtProductDiscount").val();
+	        $line_total = getLineTotal(unit_price,tax_rate,qty,discount);
+	        $("#txtLineTotal").val($line_total);
+ });
   $(document).on('click', '.deleteInvoiceItem', function () {
   	 var product_ID = $(this).attr("data-productid");
      $(this).closest('tr').remove();
      deleteInvoiceItem(product_ID);
-     return false;
  });
   $(document).on('click', '#btnInvoiceSave', function () {
   	 var customerId = $("#txtCustomerID").val();
   	 var customer_name = $("#customers_name").val();
   	 var customer_mobile = $("#txtCustomerMobile").val();
   	 var customer_email = $("#txtCustomerEmail").val();
-  	 var sale_data = {invoice_items : $invoice_items};
+  	  var invoice_items = new Array();
+  	  var i=0;
+  	  $invoice_items.forEach(function($item) {
+  	  	invoice_items[i] = {
+  	  		product_ID:$item.product_ID,
+			product_store_ID:$item.product_store_ID,
+			product_name:$item.product_name,
+			product_unit_price:$item.product_unit_price,
+			product_tax:$item.product_tax,
+			product_discount:$item.product_discount,
+			product_qty:$item.product_qty,
+			product_line_total:$item.product_line_total,
+  	  	}
+  	  	i++;
+  	  });
+  	 var sale_data = { 
+  	 	customer_id :customerId,
+  	 	customer_name :customer_name,
+  	 	customer_mobile :customer_mobile,
+  	 	customer_email :customer_email,
+  	 	invoice_items : JSON.stringify(invoice_items)
+  	 };
   	 $.ajax({
 		            url: base_url+"pos/save-sale",
 		            dataType: 'json',
@@ -100,9 +128,6 @@ $(document).ready(function(e){
 		            data: sale_data,
 		            success:    
 		            function(response){
-		                // if(response.status == true){
-		                //      add(response.data);
-		                //  }
 		                console.log(response);
 		            },
 		        });
@@ -130,7 +155,7 @@ function loadCustomer() {
 	select: 
 	    function(event, ui) {
 	      var _data = ui.item;
-	        $("#txtCustomerId").val(_data.id);
+	        $("#txtCustomerID").val(_data.id);
 	        $("#txtCustomerMobile").val(_data.mobile_number);  
 	        $("#txtCustomerEmail").val(_data.email);  
 	    },      
@@ -244,6 +269,7 @@ function getLineTotal($price,$tax,$quantity,$discount) {
 	$discount = parseInt($discount);
 	$tax_amount = ($price*$tax)/100;
 	$discount_amount = ($price*$discount)/100;
-	$line_total = ($price+($tax_amount)-($discount_amount))*$quantity;
+	$line_total = (($price+$tax_amount)-($discount_amount))*$quantity;
 	return toCurrency($line_total);
 }
+

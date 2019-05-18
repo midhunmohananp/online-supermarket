@@ -158,7 +158,6 @@ class Ajax extends CI_Controller {
 				'status'=>false
 			];
 		}
-		
 		echo json_encode($response_data);
 	}
 	public function productDetails($shop_ID)
@@ -187,8 +186,7 @@ class Ajax extends CI_Controller {
 			$response_data = [
 				'status'=>false
 			];
-		}
-		
+		}		
 		echo json_encode($response_data);
 	}
 }

@@ -80,6 +80,8 @@ $route['purchase-listing'] = 'Purchase/listing';
 
 //sale
 $route['pos'] = 'Sale/new_sale';
+$route['pos/save-sale'] = 'Sale/saveSale';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

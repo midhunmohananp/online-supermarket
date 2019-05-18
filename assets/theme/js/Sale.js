@@ -11,10 +11,10 @@ $(document).ready(function(e){
 					required: true,
 				},
 			customers_name: {
-					//required: true,
+					required: true,
 				},
 			txtCustomerMobile: {
-					//required: true,
+					required: true,
 					number : true
 				},
 			product_name: {
@@ -87,6 +87,26 @@ $(document).ready(function(e){
      deleteInvoiceItem(product_ID);
      return false;
  });
+  $(document).on('click', '#btnInvoiceSave', function () {
+  	 var customerId = $("#txtCustomerID").val();
+  	 var customer_name = $("#customers_name").val();
+  	 var customer_mobile = $("#txtCustomerMobile").val();
+  	 var customer_email = $("#txtCustomerEmail").val();
+  	 var sale_data = {invoice_items : $invoice_items};
+  	 $.ajax({
+		            url: base_url+"pos/save-sale",
+		            dataType: 'json',
+		            type: 'POST',
+		            data: sale_data,
+		            success:    
+		            function(response){
+		                // if(response.status == true){
+		                //      add(response.data);
+		                //  }
+		                console.log(response);
+		            },
+		        });
+	 });
 });
 function loadCustomer() {
 	$("#customers_name").autocomplete({
@@ -114,7 +134,7 @@ function loadCustomer() {
 	        $("#txtCustomerMobile").val(_data.mobile_number);  
 	        $("#txtCustomerEmail").val(_data.email);  
 	    },      
-	}).autocomplete( "widget" ).addClass( "btn-secondary" );
+	});
 }
 function loadProducts() {
 	$("#product_name").autocomplete({

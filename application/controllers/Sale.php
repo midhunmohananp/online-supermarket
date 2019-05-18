@@ -34,4 +34,11 @@ class Sale extends My_Controller {
 		$this->load->view($this->body.'new_sale',$data);
 		$this->load->view($this->footer);
 	}
+	public function saveSale()
+	{
+		$return_data = [
+			'success'=>true
+		];
+		echo json_encode($return_data);
+	}
 }

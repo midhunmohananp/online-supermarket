@@ -6,7 +6,7 @@
   <div class="row">
       <div class="col-md-6 col-sm-4 form-group pull-left">
            <button class="btn btn-icon btn-success" id="txtInvoicePrint" name="txtInvoicePrint">Print</button>
-           <button class="btn btn-icon btn-primary" id="txtInvoiceSave" name="txtInvoiceSave">Save</button>
+           <button class="btn btn-icon btn-primary" id="btnInvoiceSave" name="btnInvoiceSave">Save</button>
       </div>
   </div>
   <hr>

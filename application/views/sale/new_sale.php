@@ -60,11 +60,11 @@
                           </div>
                           <div class="form-group col-md-2 sale-form-group-padding">
                             <label class="control-label">Price</label>
-                            <input type="text" class="form-control" id="txtProuductUnitPrice" name="txtProuductUnitPrice" autocomplete="off" placeholder="Price" hidden="" hidden="" />
+                            <input type="text" class="form-control" id="txtProuductUnitPrice" name="txtProuductUnitPrice" autocomplete="off" disabled placeholder="Price" hidden="" hidden="" />
                           </div>
                           <div class="form-group col-md-2 sale-form-group-padding">
                             <label class="control-label">Tax(%)</label>                        
-                            <input type="text" class="form-control" id="txtProductTax" name="txtProductTax" autocomplete="off" placeholder="Tax"  hidden="" />
+                            <input type="text" class="form-control" id="txtProductTax" name="txtProductTax" autocomplete="off" disabled placeholder="Tax"  hidden="" />
                           </div>
                           <div class="form-group col-md-1 sale-form-group-padding">
                             <label class="control-label">Quantity</label>                        
@@ -76,13 +76,13 @@
                           </div>
                           <div class="form-group col-md-2 sale-form-group-padding">
                             <label class="control-label">Line Total</label>                        
-                            <input type="text" class="form-control" id="txtLineTotal" name="txtLineTotal" autocomplete="off" placeholder="Total"  value="0.00" />
+                            <input type="text" class="form-control" id="txtLineTotal" name="txtLineTotal" autocomplete="off" disabled placeholder="Total"  value="0.00" />
                           </div>                  
                         </div>
                         <div class="col-md-12 sale-no-padding">
                            <div class="form-group col-md-2 sale-form-group-padding">
                             <label class="control-label">Stock</label>                        
-                            <input type="text" class="form-control" id="txtProductStock" name="txtProductStock" autocomplete="off" placeholder="Product Name"  hidden="" />
+                            <input type="text" class="form-control" id="txtProductStock" name="txtProductStock" autocomplete="off" disabled placeholder="Product Name"  hidden="" />
                           </div>
                         </div>
                       </div><!-- /.box-body -->

@@ -64,14 +64,16 @@ $(document).ready(function(e){
     	$invoice_item['product_discount'] = $txtProductDiscount;
     	$invoice_item['product_qty'] = $txtProductQty;
     	$invoice_item['product_line_total'] = $txtLineTotal; 
-    	if($invoice_items.length > 0) {   	
+    	if($invoice_items.length > 0) { 
+    		var $is_found = 0;
 	    	$invoice_items.forEach(function($item) {
 	    		if($item.product_ID == $txtProductID) {
-	    			console.log('already excist');
-	    		} else {
-	    			addInvoiceItem($invoice_item);
-	    		}
+	    			$is_found =1;
+	    		} 
 	    	});
+	    	if($is_found == 0) {
+	    		addInvoiceItem($invoice_item);
+	    	}
 	    } else {
 	    	addInvoiceItem($invoice_item);
 	    }
@@ -79,6 +81,12 @@ $(document).ready(function(e){
     }
 
   });
+  $(document).on('click', '.deleteInvoiceItem', function () {
+  	 var product_ID = $(this).attr("data-productid");
+     $(this).closest('tr').remove();
+     deleteInvoiceItem(product_ID);
+     return false;
+ });
 });
 function loadCustomer() {
 	$("#customers_name").autocomplete({
@@ -164,11 +172,24 @@ function addInvoiceItem(item) {
                 '<td class="text-center" >'+item['product_qty']+'</td>'+
                 '<td class="text-center" >'+$line_total+'</td>'+
                 '<td class="text-center">'+
-                    '<button type="button" style="margin-top: 0px;" name="remove[]" id="" class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></i></button>'+
+                    '<button type="button" style="margin-top: 0px;"  class="btn btn-danger btn-xs deleteInvoiceItem"  data-productid="'+item['product_ID']+'"><i class="fa fa-trash" aria-hidden="true"></i></i></button>'+
                 '</td>'+		
 			'</tr>'
 		);	
 		loadPaymentDetails();
+}
+function deleteInvoiceItem($product_ID) {
+	var $index = null;
+	for (var i = 0; i <= $invoice_items.length; i++) {
+		if($product_ID == $invoice_items[i]['product_ID']) {
+			$index = i;
+			break;
+		}
+	}
+	if($index != null) {
+		$invoice_items.splice($index, 1);	    	
+		loadPaymentDetails();
+	}
 }
 
 function loadPaymentDetails() {

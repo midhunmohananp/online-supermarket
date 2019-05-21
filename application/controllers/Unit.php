@@ -86,10 +86,11 @@ class Unit extends My_Controller {
 	public function delete() {
 		$msg = '';
 		$unit_ID = $this->input->post('txtUnitId',TRUE);
-		$delete = [
-		'unit_ID'=>$unit_ID,
+		$update_data = [
+		'status'=>0,
 		];
-		$update = $this->common->delete_data('unit_of_measure',$delete);
+		$condition = ['unit_ID'=>$unit_ID];
+		$update = $this->common->update_data('unit_of_measure',$update_data,$condition);
 		if($update == TRUE) {
 			$msg = 'Unit has been successfully deleted.';
 			$this->session->set_flashdata('success',$msg);

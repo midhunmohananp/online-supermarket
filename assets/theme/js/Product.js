@@ -53,14 +53,61 @@ $(document).ready(function(){
 
  
         $('#productList').dataTable({
-          "bPaginate": true,
-          "bLengthChange": false,
-          "bFilter": false,
-          "bSort": true,
-          "bInfo": true,
-          "bAutoWidth": false
+          // // "bPaginate": true,
+          // "bLengthChange": false,
+          // // "bFilter": false,
+          // "bSort": true,
+          // "bInfo": true,
+          // "bAutoWidth": false
         });
 
+  $('#modalProductDelete').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var productID = button.data('productid') 
+  var modal = $(this)
+  modal.find('#txtProductID').val(productID)
+})
+  $("#formProductEdit").validate({
+    rules: {
+			txtProductName: {
+					required: true,					
+			},
+     		 txtProductDescription: {
+					// required: true,					
+			},
+			txtProductHSN: {
+								required: true,
+						},
+			txtProductColor: {
+					// required: true,
+			},
+			txtProductSize: {
+					// required: true,
+					number:true
+			},
+			txtProductCategory: {
+					required: true,
+			},
+			txtProductUOM: {
+					required: true,
+			},
+			/*productFile: {
+					required: true,
+			}*/
+
+	 },
+  messages: {
+				txtProductName: {
+					required: "Please enter product name",
+				},
+        txtProductDescription: {
+					required: "Please enter product description",
+				}
+			}
+  });
+  $('#btnProductEdit').click(function(){
+    $("#formProductEdit").valid();
+  });
 
 });
 // txtProductSKU: {

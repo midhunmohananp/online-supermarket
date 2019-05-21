@@ -5,11 +5,6 @@
           <!-- Default box -->
           <div class="box">
             <div class="box-header with-border">
-              <!-- <h3 class="box-title">Dashboard</h3> -->
-<!--               <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-              </div> -->
             </div>
             <div class="box-body">
             <?php echo form_open_multipart('product-insert',['id'=>'formProductAdd','name'=>'formProductAdd','role'=>'form'])?>
@@ -32,6 +27,19 @@
                         if (isset($categories) == TRUE) {
                           foreach ($categories as $category) {
                             echo '<option value="'.$category->category_ID.'">'.$category->category_name.'</option>';
+                          }
+                        }
+                        ?>
+
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label>Product Brand</label>
+                     <select class="form-control" id="txtProductBrand" name="txtProductBrand">
+                        <?php
+                        if (isset($brands) == TRUE) {
+                          foreach ($brands as $brand) {
+                              echo '<option value="'.$brand->brand_ID.'">'.$brand->brand_name.'</option>';
                           }
                         }
                         ?>

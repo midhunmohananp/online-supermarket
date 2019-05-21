@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#btnUserAdd").removeClass('disabled');
+	$(".btn").removeClass('disabled');
   $("#formUserAdd").validate({
     rules: {
 			txtUserName: {
@@ -65,4 +65,44 @@ $(document).ready(function(){
   $('#btnUserAdd').click(function(){
     $("#formUserAdd").valid();
   });
+    $("#formUserEdit").validate({
+    rules: {
+			txtUserPassword: {
+					required: true,					
+			},
+			txtUserType: {
+					required: true,					
+			},
+			txtUserConfirmPassword: {
+					required: true,	
+					equalTo:"#txtUserPassword"			
+			},
+			txtUserFirstName: {
+					required: true,					
+			},
+			txtUserMiddleName: {
+					// required: true,					
+			},
+			txtUserLastName: {
+					// required: true,					
+			},
+			txtUserPhone: {
+					required: true,					
+			},
+			txtUserAddress: {
+					required: true,					
+			}
+
+	 }
+  });
+  $('#btnUserEdit').click(function(){
+    $("#formUserEdit").valid();
+  });
+  $('#userList').dataTable({});
+    $('#modalUserDelete').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var userID = button.data('userid') 
+  var modal = $(this)
+  modal.find('#txtUserId').val(userID)
+})
 });

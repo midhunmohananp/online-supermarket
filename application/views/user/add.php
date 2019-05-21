@@ -5,17 +5,13 @@
           <!-- Default box -->
           <div class="box">
             <div class="box-header with-border">
-              <!-- <h3 class="box-title">Dashboard</h3> -->
-<!--               <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-              </div> -->
             </div>
             
             <?php echo form_open('user-insert',['id'=>'formUserAdd','name'=>'formUserAdd','role'=>'form'])?>
             <div class="box-body">
                     <!-- text input -->
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="col-md-6">
                       <label>User Type</label>
                      <select class="form-control" id="txtUserType" name="txtUserType">
                         <?php
@@ -27,43 +23,54 @@
                         ?>
                       </select>
                     </div>
-                    <div class="form-group">
+                  </div>
+                    <div class="row">
+                    <div class="col-md-6">
                       <label>User Name</label>
                       <input type="text" id="txtUserName" name="txtUserName" class="form-control" placeholder="Enter ..."/>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-6">
                       <label>Password</label>
                       <input type="password" id="txtUserPassword" name="txtUserPassword" class="form-control" placeholder="Enter ..."/>
                     </div>
-                   <div class="form-group">
+                  </div>
+                  <div class="row">
+                   <div class="col-md-6">
                       <label>Confirm Password</label>
                       <input type="password" id="txtUserConfirmPassword" name="txtUserConfirmPassword" class="form-control" placeholder="Enter ..."/>
                     </div>           
    
-                    <div class="form-group">
+                    <div class="col-md-6">
                       <label>First Name</label>
                       <input type="text" id="txtUserFirstName" name="txtUserFirstName" class="form-control" placeholder="Enter ..."/>
                     </div>
-                    <div class="form-group">
+                    </div>
+                  <div class="row">
+                    <div class="col-md-6">
                       <label>Middle  Name</label>
                       <input type="text" id="txtUserMiddleName" name="txtUserMiddleName" class="form-control" placeholder="Enter ..."/>
                     </div>
-                      <div class="form-group">
+                      <div class="col-md-6">
                       <label>Last Name</label>
                       <input type="text" id="txtUserLastName" name="txtUserLastName" class="form-control" placeholder="Enter ..."/>
                     </div>
-                    <div class="form-group">
+                    </div>
+                  <div class="row">
+                    <div class="col-md-6">
                       <label>Email Address</label>
                       <input type="text" id="txtUserEmail" name="txtUserEmail" class="form-control" placeholder="Enter ..."/>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-6">
                       <label>Phone Number</label>
                       <input type="text" id="txtUserPhone" name="txtUserPhone" class="form-control" placeholder="Enter ..."/>
                     </div>
-                    <div class="form-group">
+                    </div>
+                  <div class="row">
+                    <div class="col-md-6">
                       <label>Address</label>
                       <input type="text" id="txtUserAddress" name="txtUserAddress" class="form-control" placeholder="Enter ..."/>
                     </div>
+                  </div>
             </div><!-- /.box-body -->
             <div class="box-footer">
               <!-- Footer --><button type="submit" id="btnUserAdd" name="btnUserAdd" class="btn btn-primary">Save</button>

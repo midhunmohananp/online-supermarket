@@ -86,10 +86,11 @@ class Tax extends My_Controller {
 	public function delete() {
 		$msg = '';
 		$tax_ID = $this->input->post('txtTaxId',TRUE);
-		$delete = [
-		'tax_ID'=>$tax_ID,
+		$update_data = [
+		'status'=>0,
 		];
-		$update = $this->common->delete_data('tax',$delete);
+		$condition = ['tax_ID'=>$tax_ID];
+		$update = $this->common->update_data('tax',$update_data,$condition);
 		if($update == TRUE) {
 			$msg = 'Tax has been successfully deleted.';
 			$this->session->set_flashdata('success',$msg);

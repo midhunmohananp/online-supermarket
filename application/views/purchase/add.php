@@ -5,16 +5,12 @@
           <!-- Default box -->
           <div class="box">
             <div class="box-header with-border">
-              <!-- <h3 class="box-title">Dashboard</h3> -->
-<!--               <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-              </div> -->
             </div>
             <div class="box-body">
             <?php echo form_open_multipart('purchase-insert',['id'=>'formPurchaseAdd','name'=>'formPurchaseAdd','role'=>'form'])?>
                     <!-- text input -->
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="col-md-6">
                       <label>Product Name</label>
                       <select class="form-control" id="txtProductID" name="txtProductID">
                         <?php
@@ -27,20 +23,21 @@
 
                       </select>
                     </div>
-                    <div class="form-group">
+                    
+                    <div class="col-md-6">
                       <label>Product Quantity</label>
                       <input type="text" id="txtProductQty" name="txtProductQty" class="form-control" placeholder="Enter ..."/>
                     </div>
                    
                     
-                    <div class="form-group">
+                    <div class="col-md-6">
                       <label>Product Sku</label>
                       <input type="text" id="txtProductSKU" name="txtProductSKU" class="form-control" placeholder="Enter ..."/>
                     </div>
                     <!-- textarea -->
-                    
-                    
-                     <div class="form-group">
+                    </div>
+                    <div class="row">
+                     <div class="col-md-6">
                       <label>Product Unit Of Meassure</label>
                      <select class="form-control" id="txtProductUOM" name="txtProductUOM">
                         <?php
@@ -53,7 +50,7 @@
 
                       </select>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-6">
                       <label>Product Tax</label>
                      <select class="form-control" id="txtProductTax" name="txtProductTax">
                         <?php
@@ -66,14 +63,17 @@
 
                       </select>
                     </div>
-                    <div class="form-group">
+                     </div>
+                    <div class="row">
+                    <div class="col-md-6">
                       <label>Product Unit Price</label>
                       <input type="text" id="txtProductUnitPrice" name="txtProductUnitPrice" class="form-control" placeholder="Enter ..."/>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-6">
                       <label>Product Purchase Rate</label>
                       <input type="text" id="txtProductPurchasePrice" name="txtProductPurchasePrice" class="form-control" placeholder="Enter ..."/>
                     </div>
+                     </div>
 
                     
                     </div><!-- /.box-body -->

@@ -90,10 +90,11 @@ class Shop extends My_Controller {
 	public function delete() {
 		$msg = '';
 		$shop_ID = $this->input->post('txtShopId',TRUE);
-		$delete = [
-		'shop_ID'=>$shop_ID,
+		$update_data = [
+		'status'=>1,
 		];
-		$update = $this->common->delete_data('shop',$delete);
+		$condition = ['shop_id'=>$shop_ID];
+		$update = $this->common->update_data('shop',$update_data,$condition);
 		if($update == TRUE) {
 			$msg = 'Shop has been successfully deleted.';
 			$this->session->set_flashdata('success',$msg);

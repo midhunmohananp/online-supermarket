@@ -82,10 +82,13 @@ class Brand extends My_Controller {
 	public function delete() {
 		$msg = '';
 		$brand_ID = $this->input->post('txtBrandId',TRUE);
-		$delete = [
+		$update = [
+		'status'=>0,
+		];
+		$condition = [
 		'brand_ID'=>$brand_ID,
 		];
-		$update = $this->common->delete_data('brand',$delete);
+		$update = $this->common->update_data('brand',$update,$condition);
 		if($update == TRUE) {
 			$msg = 'Brand has been successfully deleted.';
 			$this->session->set_flashdata('success',$msg);

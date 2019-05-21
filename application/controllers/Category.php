@@ -89,10 +89,11 @@ class Category extends My_Controller {
 	public function delete() {
 		$msg = '';
 		$category_ID = $this->input->post('txtCategoryId',TRUE);
-		$delete = [
-		'category_ID'=>$category_ID,
+		$update_data = [
+		'status'=>0,
 		];
-		$update = $this->common->delete_data('category',$delete);
+		$condition = ['category_ID'=>$category_ID];
+		$update = $this->common->update_data('category',$update_data,$condition);
 		if($update == TRUE) {
 			$msg = 'Category has been successfully deleted.';
 			$this->session->set_flashdata('success',$msg);

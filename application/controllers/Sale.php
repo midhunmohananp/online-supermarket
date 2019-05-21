@@ -42,7 +42,18 @@ class Sale extends My_Controller {
 		$customer_mobile = $this->input->post('customer_mobile',TRUE);
 		$customer_email = $this->input->post('customer_email',TRUE);
 		$invoice_items = json_decode($this->input->post('invoice_items',TRUE));
+		if(empty($customer_ID)) {
+			$insert = [
+			'first_name'=>$customer_name,
+			'email'=>$customer_mobile,
+			'phone'=>$customer_email,
+			'customer_slug'=>createslug($customer_name.$customer_email),
+			'status'=>1,
+			'date_created'=>unix_to_human($this->now,TRUE)
+			];
 
+			$customer_ID = $this->common->insert_data('customer',$insert);
+		}
 		$invoice_number = $this->sale_m->getInvoiceNumber();
 		$total_amount = 0.00;
 		$balance_amount = 0.00;
@@ -108,8 +119,27 @@ class Sale extends My_Controller {
 			}
 		}	
 		$return_data = [
-			'success'=>true
+			'success'=>true,
+			'invoice_ID'=>$invoice_ID
 		];
 		echo json_encode($return_data);
+	}
+	public function printSale($invoice_ID)
+	{
+		$data['pageheading'] = 'Invoice #'.$invoice_ID;
+		$data['cjs'] = $this->cjs;
+		$data['user_name'] = $this->user_name;
+		$data['shop_ID'] = $this->shop_ID;
+		$data['shop'] = $this->common->get_data_where_row('shop',['shop_ID'=>$this->shop_ID]);
+		$invoice =  $this->common->get_data_where_row('invoice',['invoice_ID'=>$invoice_ID]);
+		$data['invoice'] = $invoice;
+		$data['customer'] = $this->common->get_data_where_row('customer',['customer_ID'=>$invoice->customer_ID]);
+		$data['items'] = $this->sale_m->getInvoiceItems($invoice_ID);
+		$this->load->view($this->header);
+		$this->load->view($this->template.'header');
+		$this->load->view($this->template.'sidebar');
+		$this->load->view($this->template.'heading',$data);
+		$this->load->view($this->body.'print_sale',$data);
+		$this->load->view($this->footer);
 	}
 }

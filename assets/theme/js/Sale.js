@@ -94,7 +94,7 @@ $(document).ready(function(e){
      $(this).closest('tr').remove();
      deleteInvoiceItem(product_ID);
  });
-  $(document).on('click', '#btnInvoiceSave', function () {
+  $(document).on('click', '#btnInvoiceSave,#btnInvoicePrint', function () {
   	 var customerId = $("#txtCustomerID").val();
   	 var customer_name = $("#customers_name").val();
   	 var customer_mobile = $("#txtCustomerMobile").val();
@@ -128,7 +128,9 @@ $(document).ready(function(e){
 		            data: sale_data,
 		            success:    
 		            function(response){
-		                console.log(response);
+		                if(response.success == true) {
+		                	window.location.href=base_url+"pos/print-sale/"+response.invoice_ID;
+		                }
 		            },
 		        });
 	 });

@@ -87,6 +87,10 @@ $route['pos'] = 'Sale/new_sale';
 $route['pos/save-sale'] = 'Sale/saveSale';
 $route['pos/print-sale/(:any)'] = 'Sale/printSale/$1';
 
+//reports
+$route['sale-report'] = 'Report/sale';
+$route['get-sale-report'] = 'Report/getSaleReprort';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

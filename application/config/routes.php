@@ -89,7 +89,7 @@ $route['pos/print-sale/(:any)'] = 'Sale/printSale/$1';
 
 //reports
 $route['sale-report'] = 'Report/sale';
-$route['get-sale-report'] = 'Report/getSaleReprort';
+$route['get-sale-report'] = 'Report/getSaleReport';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

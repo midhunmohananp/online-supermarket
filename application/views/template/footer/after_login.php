@@ -13,6 +13,7 @@
     <!-- DATA TABES SCRIPT -->
     <script src="<?php echo assets_url();?>plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
     <script src="<?php echo assets_url();?>plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script> -->
     <script src="<?php echo assets_url();?>plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
       <!-- SlimScroll -->
       <script src="<?php echo assets_url();?>plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript"></script>

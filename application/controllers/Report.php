@@ -30,24 +30,18 @@ class Report extends My_Controller {
 		$this->load->view($this->body.'sale',$data);
 		$this->load->view($this->footer);
 	}
-	public function getSaleReprort()
+	public function getSaleReport()
 	{
 		$invoices = $this->report_m->getInvoices();
 		$data = [
 			"data"=>$invoices
 		];
-		// $responce = [
-		//   "draw" => 1,
-		//   "recordsTotal" => 57,
-		//   "recordsFiltered" => 57,
-		//   "data"=>$invoices
-		// ];
 		$responce =  array(
-"sEcho" => 1,
-"iTotalRecords" => count($invoices),
-"iTotalDisplayRecords" => count($invoices),
-"aaData" => $invoices
-);
+		"sEcho" => 1,
+		"iTotalRecords" => count($invoices),
+		"iTotalDisplayRecords" => count($invoices),
+		"aaData" => $invoices
+		);
 		echo json_encode($responce);
 	}
 }

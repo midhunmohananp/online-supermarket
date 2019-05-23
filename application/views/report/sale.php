@@ -52,9 +52,19 @@
                   <table id="saleReportList" name="saleReportList" class="table table-bordered table-hover table-responsive">
                     <thead>
                       <tr>
+                        <th>Customer Name</th>
+                        <th>Customer Email</th>
+                        <th>Customer Phone</th>
                         <th>Invoice ID</th>
-                        <th>Store ID</th>
-                        <th>Shop ID</th>
+                        <th>Issue Date</th>
+                        <th>Amount</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Amount Paid</th>
+                        <th>Blance</th>
+                        <th>Date Of Payment</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>

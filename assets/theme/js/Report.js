@@ -23,22 +23,29 @@ $(document).ready(function(e){
         }
         );
         var saleReportTable = $("#saleReportList").DataTable({
-	        	//  "processing": true,
-		        // "serverSide": true,
-		        // "ajax": {
-		        //     "url":  base_url+'get-sale-report',
-		        //     "dataType": "jsonp"
-		        // }
-		        "ajax": base_url+'get-sale-report',
-		        "bPaginate":true,
-				"bProcessing": true,
-				"pageLength": 5,
-				"columns": [
-				{ mData: 'invoice_ID' } ,
-				{ mData: 'store_Id' },
-				{ mData: 'shop_ID' }
-				]
-	        	
+            "ajax": base_url+'get-sale-report',
+            "bPaginate":true,
+            "bProcessing": true,
+            "pageLength": 5,
+            "columns": [
+            { mData: 'first_name' } ,
+            { mData: 'email' },
+            { mData: 'phone' },
+            { mData: 'invoice_ID' },
+            { mData: 'date_created' },
+            { mData: 'total_amount' },
+            { mData: 'discount_amount' },
+            { mData: 'net_amount' },
+            { mData: 'status' },
+            { mData: 'payed_amount' },
+            { mData: 'balance_amount' },
+            { mData: 'date_created' },
+            { mData: 'invoice_ID',
+              mRender: function (data, type, full) {
+                    return '<a href="'+base_url+'/customer-edit/'+data+'"><button class="btn btn-sm btn-primary">Edit</button></a>';
+                  }
+            }
+            ] 	        	
 		    });
         // $('#saleReportList').dataTable({});
         $(document).on('click', '#btnSearch', function () {
@@ -48,4 +55,4 @@ $(document).ready(function(e){
 	    
 
 });
-
+  

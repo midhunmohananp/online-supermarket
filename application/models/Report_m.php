@@ -2,11 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 Class Report_m extends CI_Model {
 
-	public function getInvoices() {
-		$this->db->select('item.invoice_ID,item.store_Id,item.shop_ID');
-		$this->db->from('invoice_item item');
-		$this->db->join('product p','p.product_ID = item.product_ID');
-		$this->db->order_by('item.invoice_item_ID','asc');
+	public function getInvoices($customer_ID=null) {
+		$this->db->select('i.*,c.first_name,c.email,c.phone,c.customer_ID');
+		$this->db->from('invoice i');
+		$this->db->join('customer c','i.customer_ID = c.customer_ID');
+		if($customer_ID == true) {
+			$this->db->where('c.customer_ID',$customer_ID);
+		}
+		$this->db->order_by('i.invoice_ID','desc');
 		$this->db->distinct();
 		$query = $this->db->get();
 		if($query->num_rows()>0)
@@ -19,6 +22,7 @@ Class Report_m extends CI_Model {
 		   return FALSE;
 		}
 	}
+		
 	
 }
 

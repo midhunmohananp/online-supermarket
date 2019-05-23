@@ -6,6 +6,7 @@
       	<div class="form-group">
           <label class="control-label">Customer Name</label>
           <input type="text" id="txtCustomerName" name="txtCustomerName" class="form-control" placeholder="Customer Name"  disabled />
+          <input type="hidden" id="txtCustomerID" name="txtCustomerID" />
         </div>
       	 <div class="form-group">
           <label class="control-label">Invoice Number</label>
@@ -69,6 +70,19 @@
                     </thead>
                     <tbody>
                     </tbody>
+                    <tfoot>
+            <tr>
+                <th colspan="5" style="text-align:right">Total:</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
                   </table>
                 </div>
               </div>

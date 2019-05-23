@@ -1,3 +1,6 @@
+var customer_ID;
+var date_from;
+var date_to;
 $(document).ready(function(e){
   $(".btn").removeClass('disabled');
   //Date range as a button
@@ -21,12 +24,26 @@ $(document).ready(function(e){
         	$('#lblEndDate').html(end.format('MMMM D, YYYY'));
           $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         }
-        );
+        );        
+        $(document).on('click', '#btnSearch', function () {
+          date_from = $('#txtStartDate').val();
+          date_to = $('#txtEndDate').val();
+          customer_ID = $('#txtCustomerID').val();
+	        saleReportTable.ajax.reload();
+	    });
         var saleReportTable = $("#saleReportList").DataTable({
-            "ajax": base_url+'get-sale-report',
+            "ajax": {
+              "url": base_url+'get-sale-report',
+              "type": "POST",
+              "data": {
+                  "customer_ID": $('#txtCustomerID').val(),
+                  "date_from": $('#txtStartDate').val(),
+                  "date_to": $('#txtEndDate').val()
+              }
+            },
             "bPaginate":true,
             "bProcessing": true,
-            "pageLength": 5,
+            "pageLength": 10,
             "columns": [
             { mData: 'first_name' } ,
             { mData: 'email' },
@@ -45,13 +62,99 @@ $(document).ready(function(e){
                     return '<a href="'+base_url+'/customer-edit/'+data+'"><button class="btn btn-sm btn-primary">Edit</button></a>';
                   }
             }
-            ] 	        	
-		    });
-        // $('#saleReportList').dataTable({});
-        $(document).on('click', '#btnSearch', function () {
-	        // $('#saleReportList').ajax.reload();
-	        saleReportTable.ajax.reload();
-	    });
+            ],
+            "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+ 
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+ 
+            totalAmount = api
+                .column( 5 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+ 
+            pageTotalAmount = api
+                .column( 5, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            totalDiscount = api
+                .column( 6 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+ 
+            pageTotalDiscount = api
+                .column( 6, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            total = api
+                .column( 7 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+ 
+            pageTotal = api
+                .column( 7, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+           
+            pageTotalPaid = api
+                .column( 9, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            totalPaid = api
+                .column( 9 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+             totalBalance = api
+                .column( 10 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 ); 
+            pageTotalBalance = api
+                .column( 10, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            $( api.column( 5 ).footer() ).html(
+                '₹'+pageTotalAmount +' ( ₹'+ totalAmount +' total)'
+            );
+            $( api.column( 6 ).footer() ).html(
+                '₹'+pageTotalDiscount +' ( ₹'+ totalDiscount +' total)'
+            );
+            $( api.column( 7 ).footer() ).html(
+                '₹'+pageTotal +' ( ₹'+ total +' total)'
+            );
+            $( api.column( 9 ).footer() ).html(
+                '₹'+pageTotalPaid +' ( ₹'+ totalPaid +' total)'
+            );
+            $( api.column( 10 ).footer() ).html(
+                '₹'+pageTotalBalance +' ( ₹'+ totalBalance +' total)'
+            );
+        }             
+        });
 	    
 
 });

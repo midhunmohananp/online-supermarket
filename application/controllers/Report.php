@@ -32,7 +32,11 @@ class Report extends My_Controller {
 	}
 	public function getSaleReport()
 	{
-		$invoices = $this->report_m->getInvoices();
+		$customer_ID = $this->input->post('customer_ID',TRUE);
+		$date_from = $this->input->post('date_from',TRUE);
+		$date_to = $this->input->post('date_to',TRUE);
+		echo $date_from;
+		$invoices = $this->report_m->getInvoices($customer_ID);
 		$data = [
 			"data"=>$invoices
 		];

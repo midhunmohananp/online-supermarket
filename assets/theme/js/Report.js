@@ -59,7 +59,7 @@ $(document).ready(function(e){
             { mData: 'date_created' },
             { mData: 'invoice_ID',
               mRender: function (data, type, full) {
-                    return '<a href="'+base_url+'/customer-edit/'+data+'"><button class="btn btn-sm btn-primary">Edit</button></a>';
+                    return '<a href="'+base_url+'pos/print-sale/'+data+'"><button class="btn btn-sm btn-primary">View</button></a>';
                   }
             }
             ],
@@ -156,6 +156,37 @@ $(document).ready(function(e){
         }             
         });
 	    
-
+        var stockReportTable = $("#stockReportList").DataTable({
+            "ajax": {
+              "url": base_url+'get-stock-report',
+              "type": "POST",
+              "data": {
+                  "product_ID": $('#txtProductID').val(),
+                  "sku": $('#txtSku').val()              
+              }
+            },
+            "bPaginate":true,
+            "bProcessing": true,
+            "pageLength": 10,
+            "columns": [
+            { mData: 'product_hsn' } ,
+            { mData: 'product_name' },
+            { mData: 'product_description' },
+            { mData: 'category_name' },
+            { mData: 'quantity' },
+            { mData: 'product_ID' },
+            { mData: 'unit_price' },
+            { mData: 'tax_rate' },
+            { mData: 'unit_name' },
+            { mData: 'sku' },
+            { mData: 'stock_date_created' },
+            ]         
+        });
+        $(document).on('click', '#btnStockSearch', function () {
+          date_from = $('#txtStartDate').val();
+          date_to = $('#txtEndDate').val();
+          customer_ID = $('#txtCustomerID').val();
+            stockReportTable.ajax.reload();
+        });
 });
   

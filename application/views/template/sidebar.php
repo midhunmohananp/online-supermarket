@@ -127,6 +127,11 @@
                 <li>
                 </li>
               </ul>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo site_url(['stock-report']);?>"><i class="fa fa-circle-o"></i>Stock Report</a></li>
+                <li>
+                </li>
+              </ul>
             </li>
             <li class="treeview">
               <a href="#">

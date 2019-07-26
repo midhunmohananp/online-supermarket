@@ -17,7 +17,7 @@
                         <th>Product Color</th>
                         <th>Product Size</th>
                         <th>Product Image</th>
-                        <th>Actions</th>
+                        <!-- <th>Actions</th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -38,7 +38,7 @@
                         echo '<a href="'.base_url().'uploads/'.$product->product_image.'" target="_blank"> <button class="btn btn-sm btn-success"><i class="fa fa-eye" aria-hidden="true"></i></button></a>';
                       }
                       echo  '</td>';
-                      echo  '<td><a href="'.site_url(['product-edit',$product->product_ID]).'"><button class="btn btn-sm btn-primary">Edit</button></a> <button class="btn btn-sm btn-danger" data-toggle="modal" data-productid="'.$product->product_ID.'" data-target="#modalProductDelete">Delete</button></td>';
+                      // echo  '<td><a href="'.site_url(['product-edit',$product->product_ID]).'"><button class="btn btn-sm btn-primary">Edit</button></a> <button class="btn btn-sm btn-danger" data-toggle="modal" data-productid="'.$product->product_ID.'" data-target="#modalProductDelete">Delete</button></td>';
                       echo  '</tr>';
 
                       }
